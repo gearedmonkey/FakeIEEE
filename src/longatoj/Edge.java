@@ -21,7 +21,7 @@ public class Edge {
 	}
 	@Override
 	public String toString(){
-		return endPoints.get(0) + "<--->" + endPoints.get(1);
+		return endPoints.get(0) + "<--->" + endPoints.get(1) + " value: " + weight;
 	}
 	@Override
 	public boolean equals(Object obj) {

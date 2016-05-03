@@ -38,13 +38,15 @@ public class Graph {
 		List temp = new ArrayList<Node>();
 		adjacencyList.put(newNode, temp);
 	}
-	public void printEdgeList(){
-		String s ="";
-		for(Edge e : edgeList){
+
+	public void printEdgeList() {
+		String s = "";
+		for (Edge e : edgeList) {
 			s += e.toString() + " Value: " + e.getEdgeValue() + "\n";
 		}
 		System.out.println(s);
 	}
+
 	public String toString() {
 		String s = "";
 		for (Node key : adjacencyList.keySet()) {
@@ -58,23 +60,32 @@ public class Graph {
 	}
 
 	public Node shortestPath(Node start, Node end, int k) {
-		Color startColor = start.getColor();
-		if(k==0){
-			return start;
-		}
-		if(start.equals(end)){
-			return start;
-		}
-		if(startColor == null){//implies node has never been met
-			
-			start.setColor(Color.GREEN);//Imply visited	
-			for(Node child: adjacencyList.get(start)){
-				return shortestPath(child, end, k-1);
+		start.visit();
+		List<Node> children = adjacencyList.get(start);
+		System.out.println("Start is: " + start + " " + children);
+		for (Node child : children) {
+			Edge e = findEdge(start, child);
+			if (!child.hasBeenVisisted()) {
+				child.visit();
+				shortestPath(child, end, k - 1);
 			}
-		}else{
-			
+
+		}
+
+		return null;
+
+	}
+
+	private Object markKeyVisited(Node key, Node start) {
+		return null;
+	}
+
+	private Edge findEdge(Node n1, Node n2) {
+		Edge e = new Edge(n1, n2, 0);
+		for (Edge edges : this.edgeList) {
+			if (edges.equals(e))
+				return edges;
 		}
 		return null;
-		
 	}
 }

@@ -22,20 +22,25 @@ public class Vroom {
 //				}
 //			}
 //		}while(isEntering);
-		myGraph.addPath(new Node(1), new Node(2), 0);
-		myGraph.addPath(new Node(1), new Node(6), 1);
-		myGraph.addPath(new Node(6), new Node(5), 2);
-		myGraph.addPath(new Node(6), new Node(7), 3);
-		myGraph.addPath(new Node(2), new Node(5), 4);
-		myGraph.addPath(new Node(7), new Node(4), 5);
-		myGraph.addPath(new Node(4), new Node(2), 6);
-		myGraph.addPath(new Node(4), new Node(3), 7);
-		myGraph.addPath(new Node(3), new Node(2), 8);
-		myGraph.addPath(new Node(5), new Node(7), 9);
-		myGraph.addPath(new Node(3), new Node(5), 10);
+//		myGraph.addPath(new Node(1), new Node(2), 0);
+//		myGraph.addPath(new Node(1), new Node(6), 1);
+//		myGraph.addPath(new Node(6), new Node(5), 2);
+//		myGraph.addPath(new Node(6), new Node(7), 3);
+//		myGraph.addPath(new Node(2), new Node(5), 4);
+//		myGraph.addPath(new Node(7), new Node(4), 5);
+//		myGraph.addPath(new Node(4), new Node(2), 6);
+//		myGraph.addPath(new Node(4), new Node(3), 7);
+//		myGraph.addPath(new Node(3), new Node(2), 8);
+//		myGraph.addPath(new Node(5), new Node(7), 9);
+//		myGraph.addPath(new Node(3), new Node(5), 10);
+		myGraph.addPath(new Node(1), new Node(2), 1);
+		myGraph.addPath(new Node(1), new Node(3), 7);
+		myGraph.addPath(new Node(2), new Node(3), 3);
+		myGraph.addPath(new Node(2), new Node(4), 20);
+		myGraph.addPath(new Node(3), new Node(4), 2);
 		System.out.println("printing adjaceny list...");
 		System.out.println(myGraph);
-		Node n = myGraph.shortestPath(new Node(3), new Node(7), 4);
+		Node n = myGraph.shortestPath(new Node(3), new Node(4), 4);
 		System.out.println(n);
 	}
 }
