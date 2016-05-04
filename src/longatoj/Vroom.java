@@ -1,6 +1,6 @@
 package longatoj;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class Vroom {
 	
@@ -40,7 +40,8 @@ public class Vroom {
 		myGraph.addPath(new Node(3), new Node(4), 2);
 		System.out.println("printing adjaceny list...");
 		System.out.println(myGraph);
-		Node n = myGraph.shortestPath(new Node(3), new Node(4), 4);
-		System.out.println(n);
+		List<Path> n = myGraph.shortestPath(new Node(3), new Node(4), 3);
+		System.out.println("FINAL RESULT: " + n);
+		
 	}
 }
