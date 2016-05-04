@@ -37,11 +37,11 @@ public class Vroom {
 		myGraph.addPath(new Node(1), new Node(3), 7);
 		myGraph.addPath(new Node(2), new Node(3), 3);
 		myGraph.addPath(new Node(2), new Node(4), 20);
-		myGraph.addPath(new Node(3), new Node(4), 2);
+		myGraph.addPath(new Node(3), new Node(4), 3);
 		System.out.println("printing adjaceny list...");
 		System.out.println(myGraph);
-		List<Path> n = myGraph.shortestPath(new Node(3), new Node(4), 3);
-		System.out.println("FINAL RESULT: " + n);
+		Path p = myGraph.shortestPath(new Node(3), new Node(4), 3);
+		System.out.println("FINAL RESULT: " + p + " with value of: " + p.getPathTotal());
 		
 	}
 }

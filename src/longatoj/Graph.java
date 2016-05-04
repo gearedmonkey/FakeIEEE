@@ -9,18 +9,14 @@ import java.util.TreeMap;
 public class Graph {
 	private Map<Node, List<Node>> adjacencyList;
 	private List<Edge> edgeList;
-	private List<List<Node>> paths;
-	private List<Path> paths1;
-	private LinkedList<Node> potentialPath;
-	private Path potentialPath1;
+	private List<Path> paths;
+	private Path potentialPath;
 
 	public Graph() {
 		adjacencyList = new TreeMap<Node, List<Node>>();
 		edgeList = new ArrayList<Edge>();
-		paths = new ArrayList<List<Node>>();
-		potentialPath = new LinkedList<Node>();
-		potentialPath1 = new Path();
-		paths1 = new ArrayList<Path>();
+		potentialPath = new Path();
+		paths = new ArrayList<Path>();
 	}
 
 	public void addPath(Node n1, Node n2, int value) {
@@ -66,37 +62,46 @@ public class Graph {
 		}
 		return s;
 	}
+	
+	public Path shortestPath(Node start, Node end, int k) {
+		Path leastCostPath = null;
+		List<Path> allPathsToEnd = this.shortestPathHelper(start, end, k);
+		int min = Integer.MAX_VALUE;
+		for(Path p : allPathsToEnd){
+			System.out.println(p + " value of: " + p.getPathTotal());
+			if(p.getPathTotal() < min){
+				leastCostPath = p;
+				min = p.getPathTotal();
+			}
+			else if(p.getPathTotal() == min){
+				if(p.getTrail().size() < leastCostPath.getTrail().size())
+					leastCostPath = p;
+			}
+			
+		}
+		return leastCostPath;
 
-	public List<Path> shortestPath(Node start, Node end, int k) {
+	}
+	private List<Path> shortestPathHelper(Node start, Node end, int k){
 		List<Node> children = adjacencyList.get(start);
 		potentialPath.add(start);
-		potentialPath1.add(start);
 		if (!start.equals(end)) {
 			for (Node child : children) {
 				if (!child.hasBeenVisisted() && k > 0) {
 					this.visitAll(start);
 					Edge e = findEdge(start, child);
-					potentialPath1.addToTotal(e.getEdgeValue());
-					shortestPath(child, end, k - 1);
-					potentialPath1.reduceTotal(e.getEdgeValue());
+					potentialPath.addToTotal(e.getEdgeValue());
+					shortestPathHelper(child, end, k - 1);
+					potentialPath.reduceTotal(e.getEdgeValue());
 					this.clearAll(child);
 				}
 			}
 		}
 		if (potentialPath.size() != 0 && potentialPath.getLast().equals(end))
-			this.paths.add((List<Node>) potentialPath.clone());
-		
-		if (potentialPath1.size() != 0 && potentialPath1.getLast().equals(end)){
-			this.paths1.add(Path.copyOf(potentialPath1));
-
-			System.out.println(potentialPath1 + " value of: " + potentialPath1.getPathTotal());
-		}
+			this.paths.add(Path.copyOf(potentialPath));
 		potentialPath.remove(start);
-		potentialPath1.remove(start);
-		return paths1;
-
+		return paths;
 	}
-
 	private void clearAll(Node child) {
 		for (List<Node> list : this.adjacencyList.values()) {
 			for (Node n : list) {
