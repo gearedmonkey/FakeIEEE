@@ -68,7 +68,6 @@ public class Graph {
 		List<Path> allPathsToEnd = this.shortestPathHelper(start, end, k);
 		int min = Integer.MAX_VALUE;
 		for(Path p : allPathsToEnd){
-			System.out.println(p + " value of: " + p.getPathTotal());
 			if(p.getPathTotal() < min){
 				leastCostPath = p;
 				min = p.getPathTotal();
