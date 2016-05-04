@@ -34,11 +34,11 @@ public class Vroom {
 		// myGraph.addPath(new Node(3), new Node(2), 8);
 		// myGraph.addPath(new Node(5), new Node(7), 9);
 		// myGraph.addPath(new Node(3), new Node(5), 10);
-		// myGraph.addPath(new Node(1), new Node(2), 1);
-		// myGraph.addPath(new Node(1), new Node(3), 7);
-		// myGraph.addPath(new Node(2), new Node(3), 3);
-		// myGraph.addPath(new Node(2), new Node(4), 20);
-		// myGraph.addPath(new Node(3), new Node(4), 3);
+		 myGraph.addPath(new Node(1), new Node(2), 1);
+		 myGraph.addPath(new Node(1), new Node(3), 7);
+		 myGraph.addPath(new Node(2), new Node(3), 3);
+		 myGraph.addPath(new Node(2), new Node(4), 20);
+		 myGraph.addPath(new Node(3), new Node(4), 3);
 		System.out.println("printing adjaceny list...");
 		System.out.println(myGraph);
 		isEntering = true;

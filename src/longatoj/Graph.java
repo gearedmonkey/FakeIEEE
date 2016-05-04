@@ -15,7 +15,6 @@ public class Graph {
 	public Graph() {
 		adjacencyList = new TreeMap<Node, List<Node>>();
 		edgeList = new ArrayList<Edge>();
-		potentialPath = new Path();
 		paths = new ArrayList<Path>();
 	}
 
@@ -65,6 +64,9 @@ public class Graph {
 	
 	public Path shortestPath(Node start, Node end, int k) {
 		Path leastCostPath = null;
+		potentialPath = new Path();
+		paths.clear();
+		System.out.println(start + " " + end);
 		List<Path> allPathsToEnd = this.shortestPathHelper(start, end, k);
 		int min = Integer.MAX_VALUE;
 		for(Path p : allPathsToEnd){
@@ -98,6 +100,7 @@ public class Graph {
 		}
 		if (potentialPath.size() != 0 && potentialPath.getLast().equals(end))
 			this.paths.add(Path.copyOf(potentialPath));
+		this.clearAll(start);
 		potentialPath.remove(start);
 		return paths;
 	}
